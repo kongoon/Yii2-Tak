@@ -19,7 +19,8 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "kartik-v/yii2-widget-colorinput": "*",
-        "2amigos/yii2-date-time-picker-widget" : "*"
+        "2amigos/yii2-date-time-picker-widget" : "*",
+        "philippfrenzel/yii2fullcalendar":"*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

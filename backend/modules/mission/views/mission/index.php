@@ -8,7 +8,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel backend\modules\mission\models\MissionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Missions';
+$this->title = 'ภารกิจ';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="mission-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Mission', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่มภารกิจ', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -43,7 +43,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ['class'=>'form-control']
                                 ),
             ],
-            'title',
+            //'title',
+            [
+                'format'=>'html',
+                'attribute'=>'title',
+                'value'=>function($model){
+                     return Html::a($model->title,['mission/view','id'=>$model->id]);
+                }
+            ],                            
             //'description:ntext',
             'date_start',
             'date_end',
