@@ -51,8 +51,17 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             [['username','password_hash','email'],'required'],
+            [['username','email'],'unique'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+        ];
+    }
+    
+    public function attributeLabels() {
+        return [
+            'username' => 'Username',
+            'password_hash' => 'Password',
+            'email' => 'อีเมลล์',
         ];
     }
 

@@ -29,13 +29,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'personal_user_id',
+            [
+                'attribute'=>'personal_user_id',
+                'value'=>$model->personal->firstname.' '.$model->personal->lastname,
+            ],
             'title',
             'description:ntext',
             'date_start',
             'date_end',
             'created_at',
             'updated_at',
+            [
+                'attribute'=>'user_id',
+                'value'=>$model->personalUser->firstname.' '.$model->personalUser->lastname,
+            ]
         ],
     ]) ?>
 

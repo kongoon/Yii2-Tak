@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use backend\modules\personal\models\Personal;
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\mission\models\MissionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -25,14 +26,35 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'personal_user_id',
+            //'id',
+            //'personal_user_id',
+            [
+                'attribute'=>'personal_user_id',
+                'value'=>function($model){
+                    return $model->personal->firstname.' '.$model->personal->lastname;
+                },
+                'filter' => Html::activeDropDownList($searchModel,
+                        'personal_user_id',
+                        ArrayHelper::map(Personal::find()->all(),
+                                'user_id',
+                                function($model){
+                                    return $model->firstname.' '.$model->lastname;
+                                }),
+                                ['class'=>'form-control']
+                                ),
+            ],
             'title',
-            'description:ntext',
+            //'description:ntext',
             'date_start',
-            // 'date_end',
+            'date_end',
             // 'created_at',
             // 'updated_at',
+            [
+                'attribute'=>'user_id',
+                'value'=>function($user){
+                    return $user->personalUser->firstname.' '.$user->personalUser->lastname;
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

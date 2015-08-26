@@ -3,7 +3,9 @@
 namespace backend\modules\mission\models;
 
 use Yii;
-
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
+use backend\modules\personal\models\Personal;
 /**
  * This is the model class for table "mission".
  *
@@ -20,6 +22,15 @@ use Yii;
  */
 class Mission extends \yii\db\ActiveRecord
 {
+    public function behaviors() {
+        return [
+            [
+               'class' =>  TimestampBehavior::className(),
+               'value' => new Expression('NOW()'),
+            ]
+        ];
+    }
+
     /**
      * @inheritdoc
      */
