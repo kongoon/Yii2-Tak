@@ -3,7 +3,8 @@
 namespace backend\modules\personal\models;
 
 use Yii;
-
+use backend\modules\setting\models\Department;
+use common\models\User;
 /**
  * This is the model class for table "personal".
  *

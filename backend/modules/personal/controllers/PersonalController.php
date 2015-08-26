@@ -90,12 +90,19 @@ class PersonalController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $user = User::findOne($id);
+        $old_pass = $user->password_hash;//รหัสผ่านเดิม
+        if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) {
+            if($old_pass!=$user->password_hash){//ตรวจสอบรหัสผ่านเดิมกับใหม่
+                $user->password_hash = Yii::$app->security->generatePasswordHash($user->password_hash);
+            }
+            $user->save();
+            $model->save();
             return $this->redirect(['view', 'id' => $model->user_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'user' => $user,
             ]);
         }
     }
