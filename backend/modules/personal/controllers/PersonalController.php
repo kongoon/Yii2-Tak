@@ -67,9 +67,11 @@ class PersonalController extends Controller
         if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) {
             $user->auth_key = Yii::$app->security->generateRandomString();
             $user->password_hash = Yii::$app->security->generatePasswordHash($user->password_hash);
-            $user->save();
-            $model->user_id = $user->id;
-            $model->save();
+            if($user->save()){
+                $model->user_id = $user->id;
+                $model->save();
+            }
+            
             return $this->redirect(['view', 'id' => $model->user_id]);
         } else {
             return $this->render('create', [
