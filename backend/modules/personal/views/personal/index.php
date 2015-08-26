@@ -34,7 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>function($model){
                     return $model->department->department;
                 },
-                'filter' => Html::activeDropDownList($searchModel, 'department_id', ArrayHelper::map(Department::find()->all(), 'id', 'department'),['class' => 'form-control', 'prompt' => 'เลือกสังกัด']),
+                'filter' => Html::activeDropDownList($searchModel, 
+                        'department_id', 
+                        ArrayHelper::map(Department::find()->all(), 
+                                'id', 
+                                'department'),
+                        ['class' => 'form-control', 
+                            'prompt' => 'เลือกสังกัด']),
             ],
             'firstname',
             'lastname',
