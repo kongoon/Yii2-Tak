@@ -115,7 +115,8 @@ class PersonalController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        User::findOne($id)->delete();
+        //$this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }

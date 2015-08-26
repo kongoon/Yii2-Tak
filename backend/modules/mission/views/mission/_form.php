@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use backend\modules\personal\models\Personal;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\mission\models\Mission */
@@ -12,7 +14,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'personal_user_id')->textInput() ?>
+    <?= $form->field($model, 'personal_user_id')
+            ->dropDownList(ArrayHelper::map(
+                    Personal::find()->all(), 
+                    'user_id', 
+                    function($model){
+                        return '['.$model->department->department.'] '.$model->firstname.' '.$model->lastname;
+                    }))?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
@@ -22,10 +30,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'date_end')->textInput() ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
+    
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
