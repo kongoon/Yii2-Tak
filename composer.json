@@ -22,7 +22,7 @@
         "2amigos/yii2-date-time-picker-widget" : "*",
         "philippfrenzel/yii2fullcalendar":"*",
         "dmstr/yii2-adminlte-asset": "2.*",
-        "kongoon/yii2-theme-material": "*"
+        "miloschuman/yii2-highcharts-widget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

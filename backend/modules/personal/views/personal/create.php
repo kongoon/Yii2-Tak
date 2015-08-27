@@ -10,7 +10,14 @@ $this->title = 'เพิ่มบุคลากร';
 $this->params['breadcrumbs'][] = ['label' => 'บุคลากร', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="personal-create">
+<div class="box box-warning box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+        <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        </div>
+    </div>
+    <div class="box-body">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -19,4 +26,5 @@ $this->params['breadcrumbs'][] = $this->title;
         'user' => $user,
     ]) ?>
 
+</div>
 </div>

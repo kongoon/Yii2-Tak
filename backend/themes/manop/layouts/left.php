@@ -67,6 +67,26 @@ use yii\helpers\Url;
                             'url' => ['/mission/mission/index'],
                             'icon' => 'fa-calendar-check-o',
                             'active' => Yii::$app->request->url===Url::toRoute('/mission/mission/index'),
+                        ],
+                        [
+                            'label' => 'รายงาน',
+                            'url' => ['#'],
+                            'icon' => 'fa-calendar-check-o',
+                            //'active' => Yii::$app->request->url===Url::toRoute('/mission/mission/index'),
+                            'items' => [
+                                [
+                                    'label' => 'สรุปบุคคลากร',
+                                    'url' => ['/mission/report/report1'],
+                                    'icon' => 'fa-user',
+                                    'active' => Yii::$app->request->url===Url::toRoute('/mission/report/report1'),
+                                ],
+                                [
+                                    'label' => 'สรุปรายเดือน',
+                                    'url' => ['/mission/report/report2'],
+                                    'icon' => 'fa-user',
+                                    'active' => Yii::$app->request->url===Url::toRoute('/mission/report/report2'),
+                                ],
+                            ]
                         ]
                     ]
                 ],

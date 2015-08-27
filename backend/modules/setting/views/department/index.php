@@ -7,17 +7,20 @@ use yii\grid\GridView;
 /* @var $searchModel backend\modules\setting\models\DepartmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Departments';
+$this->title = 'รายการฝ่าย';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="department-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="box box-warning box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+        <div class="box-tools pull-right">
+            <?= Html::a('เพิ่มฝ่าย', ['create'], ['class' => 'btn btn-success']) ?>
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        </div>
+    </div>
+    <div class="box-body">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Department', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,11 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'department',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
+</div>
 </div>

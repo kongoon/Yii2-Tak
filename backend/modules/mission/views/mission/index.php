@@ -15,15 +15,17 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="box box-success box-solid">
     <div class="box-header with-border">
         <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+        <div class="box-tools pull-right">
+            <?= Html::a('เพิ่มภารกิจ', ['create'], ['class' => 'btn btn-warning']) ?>
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+        </div>
     </div>
     <div class="box-body">
 
       
 <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
-        <p>
-<?= Html::a('เพิ่มภารกิจ', ['create'], ['class' => 'btn btn-success']) ?>
-        </p>
+       
 
         <?=
         GridView::widget([
