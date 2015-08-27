@@ -7,10 +7,11 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\AppAsset;
+//use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use frontend\themes\kongoon\KongoonAsset;
 
-AppAsset::register($this);
+KongoonAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
