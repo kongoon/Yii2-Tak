@@ -68,9 +68,9 @@ class ReportController extends \yii\web\Controller
                         WHERE m.personal_user_id='" . $p->user_id . "'
                         ";
             $command = Yii::$app->db->createCommand($sql);
-            $rs = $command->queryAll();
+            $rs = $command->queryOne();
 
-            $data[]=['name'=>$p['firstname'].' '.$p['lastname'],'data'=>[intval($rs[0]['m1']),intval($rs[0]['m2']),intval($rs[0]['m3']),intval($rs[0]['m4']),intval($rs[0]['m5']),intval($rs[0]['m6']),intval($rs[0]['m7']),intval($rs[0]['m8']),intval($rs[0]['m9']),intval($rs[0]['m10']),intval($rs[0]['m11']),intval($rs[0]['m12'])]];
+            $data[]=['name'=>$p['firstname'].' '.$p['lastname'],'data'=>[intval($rs['m1']),intval($rs['m2']),intval($rs['m3']),intval($rs['m4']),intval($rs['m5']),intval($rs['m6']),intval($rs['m7']),intval($rs['m8']),intval($rs['m9']),intval($rs['m10']),intval($rs['m11']),intval($rs['m12'])]];
 
         } // end foreach personal
         return $this->render('report2',['data'=>$data]);

@@ -1,7 +1,13 @@
 <?php
 use miloschuman\highcharts\Highcharts;
+use yii\helpers\Html;
 $this->title = 'สรุปข้อมูลตามเดือน';
 ?>
+<div class="box box-danger box-solid">
+    <div class="box-header">
+        <h3 class="box-title"><?= Html::encode($this->title)?></h3>
+    </div>
+    <div class="box-body">
 <?php
 echo Highcharts::widget([
     'options' => [
@@ -29,3 +35,5 @@ echo Highcharts::widget([
     ]
 ]);
 ?>
+    </div>
+</div>
