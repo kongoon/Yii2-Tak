@@ -5,6 +5,7 @@ namespace backend\modules\mission\controllers;
 use Yii;
 use yii\data\ArrayDataProvider;
 use backend\modules\personal\models\Personal;
+use kartik\mpdf\Pdf;
 
 class ReportController extends \yii\web\Controller
 {
@@ -78,7 +79,38 @@ class ReportController extends \yii\web\Controller
 
     public function actionReport3()
     {
-        return $this->render('report3');
+        // get your HTML raw content without any layouts or scripts
+        $content = $this->renderPartial('_report');
+
+        // setup kartik\mpdf\Pdf component
+        $pdf = new Pdf([
+        // set to use core fonts only
+        'mode' => Pdf::MODE_UTF8, 
+        // A4 paper format
+        'format' => Pdf::FORMAT_A4, 
+        // portrait orientation
+        'orientation' => Pdf::ORIENT_PORTRAIT, 
+        // stream to browser inline
+        'destination' => Pdf::DEST_BROWSER, 
+        // your html content input
+        'content' => $content,  
+        // format content from your own css file if needed or use the
+        // enhanced bootstrap css built by Krajee for mPDF formatting 
+        'cssFile' => '@backend/web/css/kv-mpdf-bootstrap.css',
+        // any css to be embedded if required
+        'cssInline' => '.kv-heading-1{font-size:30px}', 
+         // set mPDF properties on the fly
+        'options' => ['title' => 'Krajee Report Title'],
+         // call mPDF methods on the fly
+        'methods' => [ 
+            'SetHeader'=>['ทดสอบการใช้งานภาษาไทยใน PDF'], 
+            'SetFooter'=>['{PAGENO}'],
+        ]
+    ]);
+    
+    // return the pdf output as per the destination setting
+    return $pdf->render(); 
+        //return $this->render('report3');
     }
 
     public function actionReport4()
