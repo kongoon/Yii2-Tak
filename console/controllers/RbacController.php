@@ -151,4 +151,32 @@ class RbacController extends Controller
         $auth->assign($admin, 1);
         echo 'Create Assignment success!';
     }
+    public function actionCreateRule()
+    {
+        //เรียกใช้งาน yii rbac/create-rule
+        $auth = Yii::$app->authManager;
+
+        // add the rule
+        $rule = new \common\components\StaffRule;
+        $auth->add($rule);
+
+        
+        
+        // add the "updateOwnPost" permission and associate the rule with it.
+        $updateOwnPost = $auth->createPermission('updateOwnPost');
+        $updateOwnPost->description = 'ปรับปรุงข้อมูลการโพสของตัวเอง';
+        $updateOwnPost->ruleName = $rule->name;
+        $auth->add($updateOwnPost);
+        
+        $mission_update = $auth->createPermission('mission/mission/update');
+        
+
+        // "updateOwnPost" will be used from "updatePost"
+        $auth->addChild($updateOwnPost, $mission_update);
+        
+        // allow "staff" to update their own posts
+        $staff = $auth->createPermission('staff');
+        $auth->addChild($staff, $updateOwnPost);
+        echo 'Generate UpdateOwnPost Success!';
+    }
 }
