@@ -10,7 +10,7 @@ return [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
-        'urlManager' => [
+        /*'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules'=>[
@@ -19,6 +19,6 @@ return [
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
             ]
-        ]
+        ]*/
     ],
 ];
