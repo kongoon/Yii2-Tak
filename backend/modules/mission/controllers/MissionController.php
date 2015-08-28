@@ -140,4 +140,12 @@ class MissionController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    public function findUserModel($id)
+    {
+        if (($model = Mission::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 }

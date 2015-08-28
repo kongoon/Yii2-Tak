@@ -121,7 +121,7 @@ class RbacController extends Controller
         $staff = $auth->createRole('staff');
         $auth->add($staff);
         $auth->addChild($staff, $mission_create);
-        $auth->addChild($staff, $mission_update);
+        //$auth->addChild($staff, $mission_update);
         $auth->addChild($staff, $personal_create);
         $auth->addChild($staff, $personal_update);
         $auth->addChild($staff, $department_create);
@@ -132,6 +132,7 @@ class RbacController extends Controller
         
         $admin = $auth->createRole('admin');
         $auth->add($admin);
+        $auth->addChild($admin, $mission_update);
         $auth->addChild($admin, $mission_delete);
         $auth->addChild($admin, $personal_delete);
         $auth->addChild($admin, $department_delete);

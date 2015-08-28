@@ -76,7 +76,7 @@ class Mission extends \yii\db\ActiveRecord
      */
     public function getPersonalUser()//ผู้บันทึก
     {
-        return $this->hasOne(Personal::className(), ['user_id' => 'personal_user_id']);
+        return $this->hasOne(Personal::className(), ['user_id' => 'user_id']);
     }
     
     public function getPersonal()//ผู้ไป
