@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\models\User;
+use yii\filters\AccessControl;
 
 /**
  * PersonalController implements the CRUD actions for Personal model.
@@ -24,6 +25,25 @@ class PersonalController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            $module     = Yii::$app->controller->module->id;
+                            $action     = Yii::$app->controller->action->id;
+                            $controller = Yii::$app->controller->id;
+                            $route      = "$module/$controller/$action";
+                            $post = Yii::$app->request->post();
+                            if(Yii::$app->user->can($route)){
+                                return true;
+                            }
+                        }
+                    ]
+                ]
+            ]
         ];
     }
 
